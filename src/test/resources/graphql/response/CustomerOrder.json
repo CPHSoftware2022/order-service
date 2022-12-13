@@ -1,0 +1,16 @@
+{
+  "data": {
+    "findOneCustomerOrder": {
+      "order_start": null,
+      "order_end": null,
+      "total_price": 0.0,
+      "accepted": false,
+      "canceled_reason": null,
+      "delivered": false,
+      "customer_id": null,
+      "restaurant_id": null,
+      "feedback_id": null,
+      "employee_id": null
+    }
+  }
+}

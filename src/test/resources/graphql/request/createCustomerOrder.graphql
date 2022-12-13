@@ -1,0 +1,25 @@
+mutation {
+    addCustomerOrder(
+        order_start : "",
+        order_end : "",
+        total_price : 9000,
+        accepted : true,
+        canceled_reason : null,
+        delivered : true,
+        customer_id : 1,
+        restaurant_id : 1,
+        feedback_id : null,
+        employee_id : 1,
+    ) {
+        order_start
+        order_end
+        total_price
+        accepted
+        canceled_reason
+        delivered
+        customer_id
+        restaurant_id
+        feedback_id
+        employee_id
+    }
+}

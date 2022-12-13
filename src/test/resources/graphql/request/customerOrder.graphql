@@ -1,0 +1,14 @@
+{
+    findOneCustomerOrder(id: 1) {
+        order_start
+        order_end
+        total_price
+        accepted
+        canceled_reason
+        delivered
+        customer_id
+        restaurant_id
+        feedback_id
+        employee_id
+    }
+}
