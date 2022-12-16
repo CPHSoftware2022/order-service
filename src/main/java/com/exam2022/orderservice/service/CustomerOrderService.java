@@ -32,7 +32,7 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
         return new ArrayList<>();
     }
 
-    public Optional<CustomerOrder> findOneCustomerOrder(Integer id) {
+    public Optional<CustomerOrder> findOneCustomerOrder(Long id) {
         try {
             return customerOrderRepository.findById(id);
         } catch (Exception ex) {
@@ -74,7 +74,7 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
     }
 
     public CustomerOrder updateCustomerOrder(
-            Integer id,
+            Long id,
             String order_start,
             String order_end,
             Float total_price,
@@ -90,6 +90,7 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
             Optional<CustomerOrder> existing = customerOrderRepository.findById(id);
             if(existing.isPresent()) {
                 CustomerOrder updated = CustomerOrder.builder()
+                        .id(id)
                         .order_start(new SimpleDateFormat("dd/MM/yyyy").parse(order_start))
                         .order_end(new SimpleDateFormat("dd/MM/yyyy").parse(order_end))
                         .total_price(total_price)
@@ -110,7 +111,7 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
         return new CustomerOrder();
     }
 
-    public CustomerOrder deleteCustomerOrder(Integer id) {
+    public CustomerOrder deleteCustomerOrder(Long id) {
         try {
             customerOrderRepository.deleteById(id);
         }catch (Exception ex) {
