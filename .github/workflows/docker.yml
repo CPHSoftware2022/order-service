@@ -42,4 +42,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/cphsoftware2022/orderservice:0.1
+          tags: ghcr.io/cphsoftware2022/orderservice:0.2
