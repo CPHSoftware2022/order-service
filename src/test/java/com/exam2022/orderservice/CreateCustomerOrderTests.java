@@ -20,11 +20,8 @@ import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = OrderService.class)
 public class CreateCustomerOrderTests {
 
-    private static final String REQ_PATH = "graphql/request";
-    private static final String RES_PATH = "graphql/response";
-    // Create customer order graphql test.
-    private static final String CREATE_CUSTOMER_ORDER_PATH = format("%s/createCustomerOrder.graphql", REQ_PATH);
-    private static final String CREATE_CUSTOMER_ORDER_RESPONSE_PATH = format("%s/createCustomerOrder.json", RES_PATH);
+    private static final String REQUEST = "graphql/request/createCustomerOrder.graphql";
+    private static final String RESPONSE = "graphql/response/createCustomerOrder.json";
 
     @Autowired
     GraphQLTestTemplate graphQLTestTemplate;
@@ -35,9 +32,9 @@ public class CreateCustomerOrderTests {
         var createCourier = "create-courier.json*";
 
         GraphQLResponse graphQLResponse = graphQLTestTemplate
-                .postForResource(format(CREATE_CUSTOMER_ORDER_PATH, createCourier));
+                .postForResource(format(REQUEST, createCourier));
 
-        var expectedResponseBody = read(format(CREATE_CUSTOMER_ORDER_RESPONSE_PATH, createCourier));
+        var expectedResponseBody = read(format(RESPONSE, createCourier));
         System.out.println(expectedResponseBody);
 
         assertThat(graphQLResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
