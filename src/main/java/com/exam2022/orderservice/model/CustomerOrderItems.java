@@ -35,4 +35,12 @@ public class CustomerOrderItems {
     public void setItem_id(Long item_id) {
         this.item_id = item_id;
     }
+
+    @Override
+    public String toString() {
+        return "CustomerOrderItems{" +
+                "id=" + id +
+                ", item_id=" + item_id +
+                '}';
+    }
 }

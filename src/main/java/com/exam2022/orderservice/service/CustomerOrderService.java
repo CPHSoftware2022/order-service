@@ -2,10 +2,13 @@ package com.exam2022.orderservice.service;
 
 import com.exam2022.orderservice.kafka.ProducerService;
 import com.exam2022.orderservice.model.CustomerOrder;
+import com.exam2022.orderservice.model.EventModel;
 import com.exam2022.orderservice.repository.CustomerOrderRepository;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -24,7 +27,18 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
 
     public List<CustomerOrder> findAllCustomerOrders() {
         try {
-            return customerOrderRepository.findAll();
+            List<CustomerOrder> allOrders = customerOrderRepository.findAll();
+
+            ResponseEntity response = new ResponseEntity<>(
+                    allOrders,
+                    HttpStatus.OK);
+
+            String resultString = "CustomerOrderList{size="+allOrders.size()+"}";;
+            EventModel eventModel = new EventModel("GET", response.getStatusCode(), resultString);
+            producerService.sendMessage(eventModel.toString());
+
+            return allOrders;
+
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -34,7 +48,15 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
 
     public Optional<CustomerOrder> findOneCustomerOrder(Long id) {
         try {
-            return customerOrderRepository.findById(id);
+            Optional<CustomerOrder> customerOrder = customerOrderRepository.findById(id);
+
+            ResponseEntity response = new ResponseEntity<>(
+                    customerOrder,HttpStatus.OK);
+
+            EventModel eventModel = new EventModel("GET", response.getStatusCode(), customerOrder.toString());
+            producerService.sendMessage(eventModel.toString());
+
+            return customerOrder;
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -65,6 +87,12 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
                     .restaurant_id(restaurant_id)
                     .feedback_id(feedback_id)
                     .employee_id(employee_id).build());
+
+            ResponseEntity response = new ResponseEntity<>(
+                    customerOrder,HttpStatus.OK);
+
+            EventModel eventModel = new EventModel("POST", response.getStatusCode(), customerOrder.toString());
+            producerService.sendMessage(eventModel.toString());
 
             return customerOrder;
         } catch (Exception ex) {
@@ -101,6 +129,13 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
                         .restaurant_id(restaurant_id)
                         .feedback_id(feedback_id)
                         .employee_id(employee_id).build();
+
+                ResponseEntity response = new ResponseEntity<>(
+                        updated,HttpStatus.OK);
+
+                EventModel eventModel = new EventModel("POST", response.getStatusCode(), updated.toString());
+                producerService.sendMessage(eventModel.toString());
+
                 return customerOrderRepository.saveAndFlush(updated);
             } else {
                 System.out.println("No existing customer found with the provided id.");

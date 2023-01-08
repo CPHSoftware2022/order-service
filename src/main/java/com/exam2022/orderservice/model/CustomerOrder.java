@@ -62,4 +62,21 @@ public class CustomerOrder {
         this.feedback_id = feedback_id;
         this.employee_id = employee_id;
     }
+
+    @Override
+    public String toString() {
+        return "CustomerOrder{" +
+                "id=" + id +
+                ", order_start=" + order_start +
+                ", order_end=" + order_end +
+                ", total_price=" + total_price +
+                ", accepted=" + accepted +
+                ", canceled_reason='" + canceled_reason + '\'' +
+                ", delivered=" + delivered +
+                ", customer_id=" + customer_id +
+                ", restaurant_id=" + restaurant_id +
+                ", feedback_id=" + feedback_id +
+                ", employee_id=" + employee_id +
+                '}';
+    }
 }
