@@ -27,7 +27,7 @@ public class CreateCustomerOrderTests {
     GraphQLTestTemplate graphQLTestTemplate;
 
     @Test
-    void returnCreatingCourier() throws IOException, JSONException {
+    void returnCreatingCustomerOrder() throws IOException, JSONException {
 
         String createCustomerOrder = "createCustomerOrder.json";
 
