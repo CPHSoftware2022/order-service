@@ -39,9 +39,6 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="MavenRunner">
-    <option name="skipTests" value="true" />
-  </component>
   <component name="ProjectId" id="2IxKkvbMaeCvg8s3fKN4SjCQ7Zs" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
