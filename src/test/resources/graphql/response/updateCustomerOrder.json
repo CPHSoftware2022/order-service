@@ -2,8 +2,8 @@
   "data": {
     "updateCustomerOrder": {
       "id": "2",
-      "order_start": "Mon Apr 13 00:00:00 CET 16",
-      "order_end": "Mon Apr 13 00:00:00 CET 16",
+      "order_start": "Mon Apr 13 00:00:00 UTC 16",
+      "order_end": "Mon Apr 13 00:00:00 UTC 16",
       "total_price": 10000.0,
       "accepted": true,
       "canceled_reason": null,

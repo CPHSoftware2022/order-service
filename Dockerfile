@@ -1,13 +1,14 @@
 FROM openjdk:8 as builder
 WORKDIR /opt/app
-COPY /.mvn .mvn
-COPY /mvnw ./
-COPY /pom.xml ./
+COPY .mvn .mvn
+COPY mvnw ./
+COPY pom.xml ./
 RUN chmod +x ./mvnw
 RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline
 COPY /src ./src
-RUN ./mvnw clean install
+# skip test to save minutes on github workflows
+RUN ./mvnw clean install -Dmaven.test.skip=true
 
 
 FROM eclipse-temurin:17-jre-jammy

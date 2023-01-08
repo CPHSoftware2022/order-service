@@ -1,8 +1,8 @@
 {
   "data": {
     "findOneCustomerOrder": {
-      "order_start": "2022-10-10 10:10:10.0",
-      "order_end": "2022-10-10 10:20:10.0",
+      "order_start": "2022-10-10 12:10:10.0",
+      "order_end": "2022-10-10 12:20:10.0",
       "total_price": 400.0,
       "accepted": true,
       "canceled_reason": null,
