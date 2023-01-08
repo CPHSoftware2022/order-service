@@ -29,27 +29,22 @@ public class CreateCustomerOrderTests {
     @Test
     void returnCreatingCourier() throws IOException, JSONException {
 
-        var createCourier = "create-courier.json*";
+        String createCustomerOrder = "createCustomerOrder.json";
 
         GraphQLResponse graphQLResponse = graphQLTestTemplate
-                .postForResource(format(REQUEST, createCourier));
+                .postForResource(format(REQUEST, createCustomerOrder));
 
-        var expectedResponseBody = read(format(RESPONSE, createCourier));
-        System.out.println(expectedResponseBody);
+        String expectedResponseBody = read(format(RESPONSE, createCustomerOrder));
+        //System.out.println(expectedResponseBody);
+        //System.out.println(graphQLResponse.getRawResponse().getBody());
 
         assertThat(graphQLResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
-
 
         assertEquals(expectedResponseBody, graphQLResponse.getRawResponse().getBody(), true);
     }
 
-    private String read(String location) {
-        try {
-            return IOUtils.toString(new ClassPathResource(location).getInputStream(), StandardCharsets.UTF_8);
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        return null;
+    private String read(String location) throws IOException {
+        return IOUtils.toString(new ClassPathResource(location).getInputStream(), StandardCharsets.UTF_8);
     }
 
 }

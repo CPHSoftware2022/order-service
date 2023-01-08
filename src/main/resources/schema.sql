@@ -24,7 +24,7 @@ USE `order_service` ;
 DROP TABLE IF EXISTS `order_service`.`customer_order` ;
 
 CREATE TABLE IF NOT EXISTS `order_service`.`customer_order` (
-   `customer_order_id` INT NOT NULL AUTO_INCREMENT,
+   `customer_order_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    `order_start` DATETIME NULL,
    `order_end` DATETIME NULL,
    `total_price` DOUBLE NOT NULL,
@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS `order_service`.`customer_order` (
    `restaurant_id` INT NOT NULL,
    `feedback_id` INT NULL,
    `employee_id` INT NULL,
-   PRIMARY KEY (`customer_order_id`),
    UNIQUE INDEX `idcustomer_order_id_UNIQUE` (`customer_order_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 

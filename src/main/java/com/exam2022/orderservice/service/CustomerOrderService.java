@@ -1,10 +1,10 @@
 package com.exam2022.orderservice.service;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.exam2022.orderservice.kafka.ProducerService;
 import com.exam2022.orderservice.model.CustomerOrder;
 import com.exam2022.orderservice.repository.CustomerOrderRepository;
+import graphql.kickstart.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,9 +54,9 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
             Long employee_id
     ) {
         try {
-            CustomerOrder customerOrder = CustomerOrder.builder()
-                    .order_start(new SimpleDateFormat("dd/MM/yyyy").parse(order_start))
-                    .order_end(new SimpleDateFormat("dd/MM/yyyy").parse(order_end))
+            CustomerOrder customerOrder = customerOrderRepository.save(CustomerOrder.builder()
+                    .order_start(new SimpleDateFormat("yyyy/MM/dd").parse(order_start))
+                    .order_end(new SimpleDateFormat("yyyy/MM/dd").parse(order_end))
                     .total_price(total_price)
                     .accepted(accepted)
                     .canceled_reason(canceled_reason)
@@ -64,9 +64,9 @@ public class CustomerOrderService implements GraphQLQueryResolver, GraphQLMutati
                     .customer_id(customer_id)
                     .restaurant_id(restaurant_id)
                     .feedback_id(feedback_id)
-                    .employee_id(employee_id).build();
+                    .employee_id(employee_id).build());
 
-            return customerOrderRepository.save(customerOrder);
+            return customerOrder;
         } catch (Exception ex) {
             System.out.println(ex);
         }

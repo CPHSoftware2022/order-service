@@ -1,17 +1,17 @@
 {
   "data": {
     "updateCustomerOrder": {
-      "id": 3,
-      "order_start" : "2022-10-10 10:10:10",
-      "order_end" : "2022-10-10 10:10:10",
-      "total_price" : 10000,
-      "accepted" : true,
-      "canceled_reason" : null,
-      "delivered" : true,
-      "customer_id" : 1,
-      "restaurant_id" : 1,
-      "feedback_id" : 1,
-      "employee_id" : 1
+      "id": "2",
+      "order_start": "Mon Apr 13 00:00:00 CET 16",
+      "order_end": "Mon Apr 13 00:00:00 CET 16",
+      "total_price": 10000.0,
+      "accepted": true,
+      "canceled_reason": null,
+      "delivered": true,
+      "customer_id": 1,
+      "restaurant_id": 1,
+      "feedback_id": 1,
+      "employee_id": 1
     }
   }
 }

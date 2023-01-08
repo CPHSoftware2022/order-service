@@ -1,6 +1,5 @@
 package com.exam2022.orderservice;
 
-import com.exam2022.orderservice.OrderService;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import io.micrometer.core.instrument.util.IOUtils;
@@ -10,9 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
@@ -27,7 +26,7 @@ class OrderServiceTests {
     @Test
     void findSingleCustomerOrder() {
         try {
-            String findCustomerOrder = "customerOrder*";
+            String findCustomerOrder = "customerOrder.json";
 
             GraphQLResponse graphQLResponse = graphQLTestTemplate.postForResource(String.format(REQUEST, findCustomerOrder));
             String expectedResponseBody = read(String.format(RESPONSE, findCustomerOrder));
@@ -40,12 +39,7 @@ class OrderServiceTests {
         }
     }
 
-    private String read(String location) {
-        try {
-            return IOUtils.toString(new ClassPathResource(location).getInputStream(), StandardCharsets.UTF_8);
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        return null;
+    private String read(String location) throws IOException {
+        return IOUtils.toString(new ClassPathResource(location).getInputStream(), StandardCharsets.UTF_8);
     }
 }

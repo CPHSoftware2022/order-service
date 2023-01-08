@@ -1,16 +1,16 @@
 {
   "data": {
     "findOneCustomerOrder": {
-      "order_start": null,
-      "order_end": null,
-      "total_price": 0.0,
-      "accepted": false,
+      "order_start": "2022-10-10 10:10:10.0",
+      "order_end": "2022-10-10 10:20:10.0",
+      "total_price": 400.0,
+      "accepted": true,
       "canceled_reason": null,
-      "delivered": false,
-      "customer_id": null,
-      "restaurant_id": null,
-      "feedback_id": null,
-      "employee_id": null
+      "delivered": true,
+      "customer_id": 1,
+      "restaurant_id": 1,
+      "feedback_id": 1,
+      "employee_id": 2
     }
   }
 }
